@@ -28,6 +28,8 @@ import DiaryList from "./DiaryList";
 ];*/
 function App() {
   const [data, setData] = useState([]);
+  // 1. editor와 list가 함께 사용할 diary 정보 data를 가지고 있다.
+  // 그 일기의 초기값은 빈 배열이고 일기의 상태 변화 시 작동하는 setData 함수 존재
 
   const dataId = useRef(0);
 
@@ -44,11 +46,17 @@ function App() {
     setData([newItem, ...data]); // 가장 최근에 작성한 newItem을 올리고 그다음 좌악
   };
 
+  const onDelete = (targetId) => {
+    console.log(`${targetId}가 삭제되었습니다.`);
+    const newDiaryList = data.filter((it) => it.id !== targetId);
+    setData(newDiaryList);
+  };
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} />
-    </div>
+      <DiaryList diaryList={data} onDelete={onDelete} />
+    </div> //2. list 같은 경우에는 값이 바뀌면 자연스레 리렌더링되기에 그대로 data를 보낸다.
   );
 }
 
