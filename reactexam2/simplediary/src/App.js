@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
+import Lifecycle from "./Lifecycle";
 
 /*const dummyList = [
   {
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <div className="App">
+      <Lifecycle />
       <DiaryEditor onCreate={onCreate} />
       <DiaryList onEdit={onEdit} diaryList={data} onRemove={onRemove} />
     </div> //2. list 같은 경우에는 값이 바뀌면 자연스레 리렌더링되기에 그대로 data를 보낸다.
